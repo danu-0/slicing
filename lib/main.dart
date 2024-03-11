@@ -15,15 +15,30 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/splash',
+      onGenerateRoute: (settings) {
+        if (settings.name == '/favorit') {
+          Map<String, String>? product =
+              settings.arguments as Map<String, String>?;
+
+          return MaterialPageRoute(
+            builder: (context) {
+              if (product != null) {
+                return MyFavorit(product: product);
+              } else {
+                return MyFavorit(
+                  product: const {},
+                );
+              }
+            },
+          );
+        }
+      },
       routes: {
         '/splash': (context) => SplashScreen(),
         '/home': (context) => Home(),
         '/chat': (context) => MyChat(),
-        '/favorit': (context) {
-          final Map<String, String> product =
-              ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-          return MyFavorit(product: product);
-        },
+        '/favorit': (context, {Map<String, String>? product}) =>
+            MyFavorit(product: product ?? {}),
         '/profil': (context) => MyProfil(),
       },
     );

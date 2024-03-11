@@ -406,7 +406,7 @@ class _HomeState extends State<Home> {
         width: 70,
         child: FloatingActionButton(
           shape: const CircleBorder(side: BorderSide()),
-          onPressed: () => cController.index.value = 1,
+          onPressed: () => cController.index.value = 3,
           backgroundColor: secondary,
           foregroundColor: primary,
           elevation: 0,
@@ -419,71 +419,76 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
         child: BottomAppBar(
-          height: 76,
-          notchMargin: 10.0,
+          notchMargin: 16.0,
           shape: const CircularNotchedRectangle(),
           color: Colors.transparent,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/home');
-                  cController.onItemTapped(
-                      0); // Perbarui indeks halaman dan navigasikan ke halaman home
-                },
-                icon: Obx(() => Icon(
-                      Icons.home,
-                      size: 30,
-                      color:
-                          cController.index.value == 0 ? Colors.white : primary,
-                    )),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                    setState(() {
+                      currentIndex = 0;
+                    });
+                  },
+                  child: Icon(
+                    Icons.home,
+                    color: currentIndex == 0 ? primary : secondarytext,
+                  ),
+                ),
               ),
-              IconButton(
-                onPressed: () {
-                  cController.index.value = 1;
-                  // Navigasi ke halaman chat
-                  Navigator.pushNamed(context, '/chat');
-                },
-                icon: Obx(() => Icon(
-                      Icons.chat_rounded,
-                      size: 25,
-                      color: cController.index.value == 1
-                          ? Colors.white
-                          : Colors.white,
-                    )),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyChat()));
+                    setState(() {
+                      currentIndex = 1;
+                    });
+                  },
+                  child: Icon(
+                    Icons.chat,
+                    color: currentIndex == 1 ? primary : secondarytext,
+                  ),
+                ),
               ),
-              const Gap(120),
-              IconButton(
-                onPressed: () {
-                  cController.index.value = 3;
-                  // Navigasi ke halaman favorit
-                  Navigator.pushNamed(context, '/favorit');
-                },
-                icon: Obx(() => Icon(
-                      Icons.heart_broken,
-                      size: 25,
-                      color: cController.index.value == 3
-                          ? Colors.white
-                          : Colors.white,
-                    )),
+              Gap(50),
+              SizedBox(width: 12), // Spacer
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/favorit');
+                    setState(() {
+                      currentIndex = 3;
+                    });
+                  },
+                  child: Icon(
+                    Icons.favorite,
+                    color: currentIndex == 3 ? primary : secondarytext,
+                  ),
+                ),
               ),
-              IconButton(
-                onPressed: () {
-                  cController.index.value = 4;
-                  // Navigasi ke halaman profil
-                  Navigator.pushNamed(context, '/profil');
-                },
-                icon: Obx(() => Icon(
-                      Icons.person_sharp,
-                      size: 30,
-                      color: cController.index.value == 4
-                          ? Colors.white
-                          : Colors.white,
-                    )),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyProfil()));
+                    setState(() {
+                      currentIndex = 4;
+                    });
+                  },
+                  child: Icon(
+                    Icons.person,
+                    color: currentIndex == 4 ? primary : secondarytext,
+                  ),
+                ),
               ),
             ],
           ),
@@ -608,3 +613,81 @@ class MyController extends GetxController {
       //     ),
       //   ),
       // ),
+
+
+
+      
+      //bottom 2
+       // bottomNavigationBar: ClipRRect(
+      //   borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      //   child: BottomAppBar(
+      //     height: 76,
+      //     notchMargin: 10.0,
+      //     shape: const CircularNotchedRectangle(),
+      //     color: Colors.transparent,
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       mainAxisSize: MainAxisSize.max,
+      //       children: [
+      //         IconButton(
+      //           onPressed: () {
+      //             Navigator.pushNamed(context, '/home');
+      //             cController.onItemTapped(
+      //                 0); // Perbarui indeks halaman dan navigasikan ke halaman home
+      //           },
+      //           icon: Obx(() => Icon(
+      //                 Icons.home,
+      //                 size: 30,
+      //                 color:
+      //                     cController.index.value == 0 ? Colors.white : primary,
+      //               )),
+      //         ),
+      //         IconButton(
+      //           onPressed: () {
+      //             cController.index.value = 1;
+      //             // Navigasi ke halaman chat
+      //             Navigator.pushNamed(context, '/chat');
+      //           },
+      //           icon: Obx(() => Icon(
+      //                 Icons.chat_rounded,
+      //                 size: 25,
+      //                 color: cController.index.value == 1
+      //                     ? Colors.white
+      //                     : Colors.white,
+      //               )),
+      //         ),
+      //         const Gap(120),
+      //         IconButton(
+      //           onPressed: () {
+      //             cController.index.value = 3;
+      //             // Navigasi ke halaman favorit
+      //             Navigator.pushNamed(context, '/favorit');
+      //           },
+      //           icon: Obx(() => Icon(
+      //                 Icons.heart_broken,
+      //                 size: 25,
+      //                 color: cController.index.value == 3
+      //                     ? Colors.white
+      //                     : Colors.white,
+      //               )),
+      //         ),
+      //         IconButton(
+      //           onPressed: () {
+      //             cController.index.value = 4;
+      //             // Navigasi ke halaman profil
+      //             Navigator.pushNamed(context, '/profil');
+      //           },
+      //           icon: Obx(() => Icon(
+      //                 Icons.person_sharp,
+      //                 size: 30,
+      //                 color: cController.index.value == 4
+      //                     ? Colors.white
+      //                     : Colors.white,
+      //               )),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      //bottom

@@ -131,10 +131,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           );
                           if (isFavorite) {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        MyFavorit(product: widget.product)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    MyFavorit(product: widget.product),
+                              ),
+                            );
                           }
                         },
                         child: Image.asset(
